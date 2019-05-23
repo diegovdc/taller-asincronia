@@ -96,7 +96,9 @@ const logUserFriendsNamesWithPromisesUsingAsyncAwaitSyntax = async (userId) => {
 
 
 
-// Asincronía con node
+//===== Asincronía con node =======
+
+// Usando callbacks
 const fs = require('fs')
 const copyAndMergeTwoFiles = (mergedFilePath, path1, path2, callback) => { // puede que necesitemos un callback para hacer más cosas o lidiar con el error
   fs.readFile(path1, 'utf8', (err, data) => {
@@ -113,6 +115,9 @@ const copyAndMergeTwoFiles = (mergedFilePath, path1, path2, callback) => { // pu
   })
 }
 
+
+// Usando Promises:
+
 // metemos las funciones asíncronas de Node en Promesas (es prácticamente el mismo patrón siempre)
 // de hecho hay una función que se llama "promisify" que lo puede hacer automáticamente
 const readFilePromise = (path) => new Promise((resolve, reject) => {
@@ -128,7 +133,7 @@ const writeFilePromise = (path, data) => new Promise((resolve, reject) => {
 })
 
 
-//con promesas puras
+// con promesas puras
 const copyAndMergeTwoFiles2 = (mergedFilePath, path1, path2) => {
   // cada .then aquí regresa una promesa distinta, es fácil agregar nuevas operaciones
   return readFilePromise(path1)
